@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/clock", require("./routes/clockRoutes"));
 //app.use("/api/weather", require("./routes/weatherRoutes"));
 //app.use("/api/news", require("./routes/newsRoutes"));
 //app.use("/api/otp", require("./routes/otpRoutes"));

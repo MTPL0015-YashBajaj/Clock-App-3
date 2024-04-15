@@ -4,9 +4,11 @@ const {
   HashPassword,
   mailSender,
   AddMinutesToDate,
+  VerifyPassword
 } = require("../helpers/helper");
 const moment = require("moment");
 var otpGenerator = require("otp-generator");
+const {generateToken} = require("../helpers/generateToken");
 
 // Function to validate email using regex
 const validateEmail = (email) => {
@@ -100,15 +102,14 @@ exports.registerUser = async (req, res) => {
           "",
           gender,
           newdob,
-          0,
+          1,
           0,
           CurrentDate,
           provider || null,
           0,
           null,
           CurrentDate,
-          CurrentDate
-          
+          CurrentDate,
         ]
       );
 
@@ -151,5 +152,76 @@ exports.getUsers = async (req, res) => {
   } catch (error) {
     console.error("Error executing SQL query:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.login = async (req, res) => {
+  let { loginId, password } = req.body;
+
+  try {
+    if (loginId === "" || password === "") {
+      res.status(400).json({ message: "Enter Both" });
+    }
+
+    if (!validateEmail(loginId)) {
+      return res.status(400).json({ error: "Invalid email format" });
+    }
+    // console.log('email--',isEmail);
+    //let user = null;
+    // const [isEmail] = await con
+    // .promise()
+    // .query(`SELECT email FROM users WHERE email = ?`, [loginId]);
+    // console.log('email--',isEmail);
+
+    const [user] = await con
+      .promise()
+      .query(`SELECT * FROM users WHERE email = ?`, [loginId]);
+
+      console.log("users 179--",user)
+    if (user[0].length <=0) {
+      return res.status(400).json({ error: "User doesn't exist" });
+    }
+    console.log("Users-- 183", user);
+    if (user[0].is_verfied) {
+      return res.status(400).json({ error: "Your email is not verified" });
+    }
+
+    //   else{
+    //   user = await User.findOne({
+    //     where: {
+    //       phone: loginId,
+    //     },
+    //   });
+    //   if (!user) {
+    //     return errorFunc(res,400,noUser)
+    //   }
+    //   if (user.dataValues.is_verfied) {
+    //     return errorFunc(res,400,"Your Phone Number is not verfied Yet")
+    //   }
+    // }
+    // console.log(user.dataValues.password);
+    // console.log("user22----",user);
+
+    let pass = await VerifyPassword(password,user[0].password);
+    console.log("pass 206--",pass)
+    if (!pass) {
+      return res.status(400).json({ error: "incorrect  password" });
+    }
+
+    const token = await generateToken(req, res, user.user_id);
+    //let userUpdate = null;
+    
+      const [userUpdate] = await con
+        .promise()
+        .query(`UPDATE users SET token = ? WHERE email = ?`, [token, loginId]);
+    
+
+    console.log("User Update--217",userUpdate)
+    if (!userUpdate) {
+      return res.status(400).json({ error: "Something went wrong" });
+    }
+    return res.status(200).json({ error: "Success" });
+  } catch (error) {
+    return res.status(200).json({ error: error.message });
   }
 };

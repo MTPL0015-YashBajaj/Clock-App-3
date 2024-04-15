@@ -13,6 +13,7 @@ exports.HashPassword = async (pass) => {
 
 exports.VerifyPassword = async (pass, hash) => {
   try {
+    console.log(pass, hash,"test")
     const compare = await bcrypt.compare(pass, hash);
     return compare;
   } catch (error) {
