@@ -3,7 +3,7 @@ import UserController from "../../controllers/UserController";
 
 function SignInForm() {
   const [state, setState] = React.useState({
-    email: "",
+    loginId: "",
     password: "",
   });
 
@@ -15,7 +15,7 @@ function SignInForm() {
     event.preventDefault();
 
     // Check if fullName is empty
-    if (state.email.trim() === "") {
+    if (state.loginId.trim() === "") {
       setErrorMessage('Please enter a valid email address');
       return;
     }
@@ -55,10 +55,10 @@ function SignInForm() {
           type="email"
           placeholder="Email"
           name="email"
-          value={state.email}
-          onChange={(event) => setState({ ...state, email: event.target.value })}
+          value={state.loginId}
+          onChange={(event) => setState({ ...state, loginId: event.target.value })}
         />
-         {!state.email && errorMessage}
+         {!state.loginId && errorMessage}
         <input
           type="password"
           name="password"

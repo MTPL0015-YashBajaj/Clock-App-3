@@ -9,6 +9,7 @@ function SignUpForm() {
     phoneNumber:"",
     gender:"",
     dob:"",
+    countryCode:"",
   });
 
   const [errorMessage, setErrorMessage]= useState("");
@@ -34,8 +35,12 @@ function SignUpForm() {
       return;
     }
 
-    if (state.phoneNumber.length < 12 || state.phoneNumber.length > 15) {
+    if (state.phoneNumber.length < 10 || state.phoneNumber.length > 15) {
       setErrorMessage('Please enter a valid phone number');
+      return;
+    }
+    if (state.countryCode.length <0) {
+      setErrorMessage('Please enter a valid country code');
       return;
     }
 
@@ -51,6 +56,7 @@ function SignUpForm() {
     else{
       console.log("state",state);
       const req = JSON.stringify(state);
+      console.log("request",req)
       const response = await userController.Register(req);
     }
 
@@ -105,6 +111,14 @@ function SignUpForm() {
           value={state.phoneNumber}
           onChange={(event) => setState({ ...state, phoneNumber: event.target.value })}
           placeholder="Phone no"
+        />
+        {!state.password && errorMessage}
+          <input
+          type="text"
+          name="phone"
+          value={state.countryCode}
+          onChange={(event) => setState({ ...state, countryCode: event.target.value })}
+          placeholder="Country code"
         />
         {!state.phoneNumber && errorMessage}
         <input
