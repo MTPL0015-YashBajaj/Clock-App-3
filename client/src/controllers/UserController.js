@@ -38,9 +38,9 @@ class Controller {
   }
 
   async SetTimer(data) {
-    const url = "api/Clock/GetInsertClock";
-    const data = `userID=${userID}`;
-    return Service.GetData(url, data);
+    const url = "api/clock/insertclock";
+    //const data = `userID=${userID}`;
+    return Service.PostData(url, data);
   }
 }
 

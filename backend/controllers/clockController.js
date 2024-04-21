@@ -3,7 +3,7 @@ const con = require("../config/dbConnection");
 const moment = require('moment');
 
 exports.insertClock = async (req, res) => {
-  const { userId } = req.body;
+  const { userId,loginTime } = req.body;
 
   try {
     // console.log("hi")
@@ -13,7 +13,7 @@ exports.insertClock = async (req, res) => {
       .promise()
       .query(
         `INSERT INTO clock (user_id, createdAt, updatedAt, login_time) VALUES (?, ?, ?, ?)`,
-        [userId, currentDate, currentDate, currentDate]
+        [userId, currentDate, currentDate, loginTime]
       );
 
     // Handle successful insertion

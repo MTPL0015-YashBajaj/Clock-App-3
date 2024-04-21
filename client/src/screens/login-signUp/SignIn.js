@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import UserController from "../../controllers/UserController";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+
 
 function SignInForm() {
   const [state, setState] = React.useState({
@@ -12,6 +14,7 @@ function SignInForm() {
   
   const userController = new UserController();
   const navigate = useNavigate();
+  const cookies = new Cookies();
 
 
   const handleOnSubmit = async (event) => {
@@ -33,7 +36,9 @@ function SignInForm() {
       const req = JSON.stringify(state);
       const response = await userController.Login(req);
       console.log(response)
-      if(response.error ==="Success"){
+      if(response.success ==="Success"){
+        cookies.set('userId', response.userId);
+        cookies.set("jwt", response.jwtToken, { path: "/" });
         navigate("/home");
 
       }

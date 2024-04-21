@@ -5,6 +5,7 @@ const router = express.Router();
 const {
     insertClock
 } = require("../controllers/clockController");
+const {authVerification} = require('../helpers/tokenAuthorization')
 
 // Middleware function
 router.use((req, res, next) => {
@@ -14,7 +15,7 @@ router.use((req, res, next) => {
 
 // Route endpoints
 //router.get("/getusers", getUsers);
-router.post("/insertclock", insertClock);
+router.post("/insertclock",authVerification, insertClock);
 //router.post("/login", login);
 
 module.exports = router;

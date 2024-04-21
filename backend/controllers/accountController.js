@@ -9,6 +9,7 @@ const {
 const moment = require("moment");
 var otpGenerator = require("otp-generator");
 const {generateToken} = require("../helpers/generateToken");
+const {tokenAuthorization} = require("../helpers/tokenAuthorization");
 
 // Function to validate email using regex
 const validateEmail = (email) => {
@@ -207,8 +208,9 @@ exports.login = async (req, res) => {
     if (!pass) {
       return res.status(400).json({ error: "incorrect  password" });
     }
+    console.log(user[0])
 
-    const token = await generateToken(req, res, user.user_id);
+    const token = await generateToken(req, res, user[0].user_id);
     //let userUpdate = null;
     
       const [userUpdate] = await con
@@ -220,8 +222,10 @@ exports.login = async (req, res) => {
     if (!userUpdate) {
       return res.status(400).json({ error: "Something went wrong" });
     }
-    return res.status(200).json({ error: "Success" });
+    return res.status(200).json({ success: "Success",jwtToken:token,userId: user[0].user_id});
   } catch (error) {
-    return res.status(200).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 };
+
+

@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 
 
 const generateToken = async (req, res, loginId) => {
+    console.log("login id",loginId)
     // const email = req.body.email
     try {
         const token = await jwt.sign(loginId, process.env.ACCESS_TOKEN_SECRET);

@@ -40,6 +40,9 @@
 
 
 import React, { useState, useEffect } from "react";
+import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
+import UserController from "../controllers/UserController"
 
 function Timer() {
   const [isRunning, setIsRunning] = useState(false);
@@ -47,7 +50,17 @@ function Timer() {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
 
+
+  const cookies = new Cookies();
+  const userController = new UserController();
+  const navigate = useNavigate();
+
+
   useEffect(() => {
+    const userId = cookies.get("userId");
+    if( !userId){
+      navigate("/SignIn");
+    }
     let interval;
 
     if (isRunning) {
@@ -61,9 +74,15 @@ function Timer() {
     return () => clearInterval(interval);
   }, [isRunning, startTime]);
 
-  const handleStart = () => {
+  const handleStart = async () => {
     setIsRunning(true);
+    const userId = cookies.get("userId");
     setStartTime(Date.now() - elapsedTime);
+    let data = JSON.stringify({ userId: userId, loginTime: Date.now() });
+
+    console.log("data",data);
+    const response = await userController.SetTimer(data);
+    console.log("time response",response);
   };
 
   const handlePause = () => {
