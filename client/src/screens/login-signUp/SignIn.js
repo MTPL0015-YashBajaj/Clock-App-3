@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import UserController from "../../controllers/UserController";
+import { useNavigate } from "react-router-dom";
 
 function SignInForm() {
   const [state, setState] = React.useState({
@@ -10,6 +11,8 @@ function SignInForm() {
   const [errorMessage, setErrorMessage]= useState("");
   
   const userController = new UserController();
+  const navigate = useNavigate();
+
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
@@ -29,6 +32,14 @@ function SignInForm() {
       console.log("state",state);
       const req = JSON.stringify(state);
       const response = await userController.Login(req);
+      console.log(response)
+      if(response.error ==="Success"){
+        navigate("/home");
+
+      }
+      else{
+        console.log("fail")
+      }
     }
 
     // Clear error message
