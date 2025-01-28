@@ -57,10 +57,10 @@ function Timer() {
 
 
   useEffect(() => {
-    const userId = cookies.get("userId");
-    if( !userId){
-      navigate("/SignIn");
-    }
+    // const userId = cookies.get("userId");
+    // if( !userId){
+    //   navigate("/SignIn");
+    // }
     let interval;
 
     if (isRunning) {

@@ -11,8 +11,8 @@ body {
   align-items: center;
   flex-direction: column;
   font-family: "Montserrat", sans-serif;
-  height: 100vh;
-  margin: -20px 0 50px;
+  /* height: 100vh;
+  margin: -20px 0 50px; */
 }
 
 .App {
@@ -159,4 +159,64 @@ footer i {
 footer a {
   color: #3c97bf;
   text-decoration: none;
+}
+
+/* Responsive Design */
+@media (min-width: 320px) and (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  span {
+    font-size: 12px;
+  }
+
+  /* .container {
+    width: 90%;
+    min-height: auto;
+  } */
+
+  .container {
+    width: 100%;
+    min-height: auto;
+    flex-direction: column;
+  }
+
+  .form-container {
+    padding: 20px;
+    width: 100%;
+    position: relative;
+  }
+
+  .overlay-container {
+    display: none;
+  }
+
+  .btn-main {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .sign-in-container {
+    transform: translateX(0);
+    opacity: 1;
+    width: 100%;
+    z-index: 5;
+  }
+
+  .sign-up-container {
+    transform: translateZ(0);
+    opacity: 1;
+    width: 100%;
+    z-index: 5;
+  }
+
+  form {
+    padding: 10px;
+  }
+
+  .button {
+    padding: 10px 20px;
+  }
 }

@@ -1,13 +1,11 @@
 import React from "react";
-import Timer from "../../components/timer";
-
+import Header from "../../components/header/header";
 
 export default function HomeScreen() {
-
   return (
     <div className="App">
+      <Header />
       <h2>Home page</h2>
-      <Timer />
     </div>
   );
 }

@@ -4,22 +4,20 @@ import SignUpForm from "./screens/login-signUp/signUp";
 import Overlay from "./components/overlay/overlay";
 
 export default function App() {
-  const [type, setType] = useState("signIn");
+  const [containerClass, setContainerClass] = useState("");
 
-  const handleOnClick = (text) => {
-    if (text !== type) {
-      setType(text);
-      return;
+  const handleOnClick = (type) => {
+    if (type === "signUp") {
+      setContainerClass("right-panel-active");
+    } else {
+      setContainerClass("");
     }
   };
-
-  const containerClass =
-    "container " + (type === "signUp" ? "right-panel-active" : "");
 
   return (
     <div className="App">
       <h2>Sign in/up Form</h2>
-      <div className={containerClass} id="container">
+      <div className={`container ${containerClass}`} id="container">
         {/* Sign-In Form */}
         <SignInForm />
         {/* Sign-Up Form */}

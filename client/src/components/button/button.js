@@ -3,10 +3,8 @@ import "./button.css";
 
 export default function Button({ CName, title, id, onClick }) {
   return (
-    <>
-      <button className={CName} id={id} onClick={onClick}>
-        {title}
-      </button>
-    </>
+    <button className={CName} id={id} onClick={onClick}>
+      {title}
+    </button>
   );
 }

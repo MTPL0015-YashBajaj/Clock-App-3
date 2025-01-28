@@ -9,25 +9,23 @@ export default function SocialLogin() {
   };
 
   return (
-    <>
-      <div className="social-container">
-        <FaFacebook
-          className="social-icon facebook"
-          onClick={() => handleSocialClick("Facebook")}
-        />
-        <FaGoogle
-          className="social-icon google"
-          onClick={() => handleSocialClick("Google")}
-        />
-        <FaTwitter
-          className="social-icon twitter"
-          onClick={() => handleSocialClick("Twitter")}
-        />
-        <FaLinkedin
-          className="social-icon twitter"
-          onClick={() => handleSocialClick("Twitter")}
-        />
-      </div>
-    </>
+    <div className="social-container">
+      <FaFacebook
+        className="social-icon facebook"
+        onClick={() => handleSocialClick("Facebook")}
+      />
+      <FaGoogle
+        className="social-icon google"
+        onClick={() => handleSocialClick("Google")}
+      />
+      <FaTwitter
+        className="social-icon twitter"
+        onClick={() => handleSocialClick("Twitter")}
+      />
+      <FaLinkedin
+        className="social-icon twitter"
+        onClick={() => handleSocialClick("Twitter")}
+      />
+    </div>
   );
 }

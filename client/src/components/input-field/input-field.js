@@ -21,31 +21,29 @@ const InputField = ({
   const inputType = type === "password" && showPassword ? "text" : type;
 
   return (
-    <>
-      <div className="input-main">
-        <div className="input-field-container">
-          {leftIcon && <span className="input-icon left-icon">{leftIcon}</span>}
-          <input
-            type={inputType}
-            name={name}
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
-            className={`input-field ${error ? "error" : ""}`}
-          />
-          {rightIcon && (
-            <span
-              className="input-icon right-icon"
-              onClick={togglePasswordVisibility}
-              style={{ cursor: "pointer" }}
-            >
-              {showPassword ? rightIcon.open : rightIcon.closed}
-            </span>
-          )}
-        </div>
-        {error && <p className="error-message">{error}</p>}
+    <div className="input-main">
+      <div className="input-field-container">
+        {leftIcon && <span className="input-icon left-icon">{leftIcon}</span>}
+        <input
+          type={inputType}
+          name={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          className={`input-field ${error ? "error" : ""}`}
+        />
+        {rightIcon && (
+          <span
+            className="input-icon right-icon"
+            onClick={togglePasswordVisibility}
+            style={{ cursor: "pointer" }}
+          >
+            {showPassword ? rightIcon.open : rightIcon.closed}
+          </span>
+        )}
       </div>
-    </>
+      {error && <p className="error-message">{error}</p>}
+    </div>
   );
 };
 
