@@ -1,14 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client"; // Import createRoot
 import LocalRoutes from "./navigations/navigation";
 import "./App.css";
-import "./screens/login-signUp/styles.css";
 
 const rootElement = document.getElementById("root");
 
-ReactDOM.render(
+// Use createRoot for rendering in React 18
+const root = createRoot(rootElement);
+
+root.render(
   <React.StrictMode>
     <LocalRoutes />
-  </React.StrictMode>,
-  rootElement
+  </React.StrictMode>
 );

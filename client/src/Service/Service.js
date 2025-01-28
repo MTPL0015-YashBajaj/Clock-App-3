@@ -3,7 +3,6 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 export class Service {
-  
   static baseurl = "http://localhost:3001/";
 
   static getHeaders() {
@@ -37,7 +36,10 @@ export class Service {
   static async fetchData(url, method, data = null) {
     try {
       const apiurl = this.baseurl + url + (data ? "?" + data : "");
-      const response = await fetch(apiurl, this.getRequestOptions(method, data));
+      const response = await fetch(
+        apiurl,
+        this.getRequestOptions(method, data)
+      );
       return response.json();
     } catch (error) {
       throw error;

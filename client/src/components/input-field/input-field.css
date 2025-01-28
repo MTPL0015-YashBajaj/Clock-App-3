@@ -1,0 +1,46 @@
+.input-main {
+  width: 100%;
+  display: flex;
+  align-items: self-start;
+  flex-direction: column;
+}
+
+.input-field-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.input-icon {
+  position: absolute;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.left-icon {
+  left: 10px;
+}
+
+.right-icon {
+  right: 10px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-field.error {
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}

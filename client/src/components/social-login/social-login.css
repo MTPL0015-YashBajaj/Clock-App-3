@@ -1,0 +1,58 @@
+.social-container {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-container a {
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 40px;
+  width: 40px;
+}
+
+.social-login-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.social-login-container h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icon {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-icon.facebook {
+  color: #3b5998;
+}
+
+.social-icon.google {
+  color: #db4437;
+}
+
+.social-icon.twitter {
+  color: #1da1f2;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  color: #000;
+}

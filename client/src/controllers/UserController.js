@@ -5,13 +5,13 @@ class Controller {
 
   async Register(data) {
     const url = "api/users/signup";
-    console.log("data",data);
+    console.log("data", data);
     return Service.PostData(url, data);
   }
 
   async Login(data) {
     const url = "api/users/Login";
-    console.log("data",data);
+    console.log("data", data);
     return Service.PostData(url, data);
   }
 
@@ -35,12 +35,6 @@ class Controller {
     const url = "api/Account/GetUserInformation";
     const data = `userID=${userID}`;
     return Service.GetData(url, data);
-  }
-
-  async SetTimer(data) {
-    const url = "api/clock/insertclock";
-    //const data = `userID=${userID}`;
-    return Service.PostData(url, data);
   }
 }
 

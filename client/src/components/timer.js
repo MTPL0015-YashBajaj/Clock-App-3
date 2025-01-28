@@ -42,7 +42,7 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
-import UserController from "../controllers/UserController"
+import UserController from "../controllers/userController"
 
 function Timer() {
   const [isRunning, setIsRunning] = useState(false);
